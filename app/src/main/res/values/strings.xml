@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Translate languages</string>
+    <!-- TODO: Remove or change this placeholder text -->
+<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+
+    <string name="etEnterTextOriginal">Enter the text</string>
+    <string name="tvShowTextTranslated">Translate will be here</string>
+    <string name="btnDeleteTheRecord">Delete the record</string>
+    <string name="imgSpeak">Translation pronunciation </string>
+    <string name="imgSpeakOriginal">Original translation pronunciation</string>
+    <string name="tvFromLanguage">English</string>
+    <string name="tvToLanguage">Arabic</string>
+    <string name="imgChangeLanguage"> Language switch</string>
+    <string name="messageDoDeletedRecord">Deleted translated from record</string>
+    <string name="messageNoFundText">There is no text to pronounce</string>
+    <string name="messageDeletedRecord"> Deleted the record</string>
+    <string name="messageTranslating">Translating</string>
+    <string name="messageFailure">Sound play failed</string>
+
+    <string name="dialog_delete_history_title">Confirm Deletion</string>
+    <string name="dialog_delete_history_yes">Delete</string>
+    <string name="dialog_delete_history_no">Cancel</string>
+    <string name="dialog_delete_history_message">Are you sure you want to delete all history? This action cannot be undone.</string>
+
+
+
+
+
+
+</resources>

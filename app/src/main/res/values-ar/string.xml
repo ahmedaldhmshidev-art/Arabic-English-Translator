@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="etEnterTextOriginal">إدخل النص</string>
+    <string name="tvShowTextTranslated">الترجمة ستضهر هنا</string>
+    <string name="btnDeleteTheRecord">حذف السجل</string>
+    <string name="app_name">Translate languages</string>
+    <string name="imgSpeak">نطق الترجمة</string>
+    <string name="imgSpeakOriginal">نطق الترجمةالأصلي</string>
+    <string name="tvFromLanguage">اللأنجليزي</string>
+    <string name="tvToLanguage">العربية</string>
+    <string name="imgChangeLanguage">تبديل اللغات</string>
+    <string name="messageNoFundText"> لا يوجد نص لنطقه</string>
+    <string name="messageDeletedRecord"> تم حذف السجل</string>
+    <string name="messageDoDeletedRecord"> تم حذف الترجمة من السجل</string>
+    <string name="messageTranslating">جاري الترجمة...</string>
+    <string name="messageFailure">فشل تشغيل الصوت</string>
+
+    <string name="dialog_delete_history_title">تأكيد حذف السجل</string>
+    <string name="dialog_delete_history_yes">حذف</string>
+    <string name="dialog_delete_history_no">الغاء</string>
+    <string name="dialog_delete_history_message">هل أنت متأكد أنك تريد حذف جميع السجلات؟ لا يمكن التراجع عن هذا الاجراء</string>
+
+
+</resources>
