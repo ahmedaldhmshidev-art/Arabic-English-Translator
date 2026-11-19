@@ -9,5 +9,18 @@
         android:id="@+id/showTranslated"
         android:name="com.example.translatelanguages.ShowTranslated"
         android:label="fragment_show_translated"
-        tools:layout="@layout/fragment_show_translated" />
+        tools:layout="@layout/fragment_show_translated" >
+        <action
+            android:id="@+id/action_showTranslated_to_recordTranslation"
+            app:destination="@id/recordTranslation" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordTranslation"
+        android:name="com.example.translatelanguages.RecordTranslation"
+        android:label="fragment_record_translation"
+        tools:layout="@layout/fragment_record_translation" >
+        <action
+            android:id="@+id/action_recordTranslation_to_showTranslated"
+            app:destination="@id/showTranslated" />
+    </fragment>
 </navigation>

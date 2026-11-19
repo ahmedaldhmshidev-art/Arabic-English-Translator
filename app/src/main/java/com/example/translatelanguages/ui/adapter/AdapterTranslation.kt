@@ -22,10 +22,10 @@ class AdapterTranslate(
         }
         // ViewHolder
         inner class TranslateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val tvOriginal: TextView = itemView.findViewById(R.id.tvOriginalId_item)
-            val tvLanguages: TextView = itemView.findViewById(R.id.tvLanguagesId_item)
-            val tvTranslated: TextView = itemView.findViewById(R.id.tvTranslated_id_item)
-            val tvTime: TextView = itemView.findViewById(R.id.tvTimestampId_item)
+            val tvOriginal: TextView = itemView.findViewById(R.id.tvOriginal)
+            val tvLanguages: TextView = itemView.findViewById(R.id.tvLanguage)
+            val tvTranslated: TextView = itemView.findViewById(R.id.tvTranslated)
+            val tvTime: TextView = itemView.findViewById(R.id.tvDate)
 
             fun bind(item: EntityTranslate) {
                 tvOriginal.text = item.originalTextEntity

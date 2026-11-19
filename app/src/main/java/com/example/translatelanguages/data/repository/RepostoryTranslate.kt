@@ -10,48 +10,89 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
 
 class RepositoryTranslate(context: Context) {
-    //  DataStore للغات
-    private val preferencesTranslate = PreferencesTranslate(context)
 
-    //  Room Database + DAO
-    private val db = AppDatabase.getInstance(context)
+    private val preferencesTranslate =
+        PreferencesTranslate(context.applicationContext)
+
+    private val db =
+        AppDatabase.getInstance(context.applicationContext)
+
     private val dao = db.daoTranslate()
-    //  ترجمة النص باستخدام ML Kit
-    suspend fun translate(text: String, from: String, to: String): Result<String> {
-        return try {
-            // إعداد خيارات المترجم
-            val options = TranslatorOptions.Builder()
+
+    // ترجمة النص وحفظه عند استيفاء الشروط
+    suspend fun translate(
+        text: String,
+        from: String,
+        to: String
+    ): Result<String> {
+
+        if (text.isBlank()) {
+            return Result.failure(
+                IllegalArgumentException("النص فارغ")
+            )
+        }
+
+        if (from == to) {
+            return Result.failure(
+                IllegalArgumentException("لغة المصدر والهدف متطابقتان")
+            )
+        }
+
+        val translator = Translation.getClient(
+            TranslatorOptions.Builder()
                 .setSourceLanguage(from)
                 .setTargetLanguage(to)
                 .build()
-            val translator = Translation.getClient(options)
-            // تنزيل النموذج إذا لم يكن موجود
-            translator.downloadModelIfNeeded().await()
-            // ترجمة النص
+        )
+
+        return try {
             val translated = translator.translate(text).await()
-            val exists = dao.getTranslationExists(text , from , to)
-            if ( exists == null && isValidTranslation(text , translated))
-            {
-                // بعد الترجمة وتحقيق الشروط : حفظ النص في Room
-            saveTranslationToRoom(text, translated, from, to)
+
+            if (isValidTranslation(text, translated)) {
+
+                val exists = dao.getTranslationExists(
+                    text.trim(),
+                    from,
+                    to
+                )
+
+                if (exists == null) {
+                    saveTranslationToRoom(
+                        text.trim(),
+                        translated.trim(),
+                        from,
+                        to
+                    )
+                }
             }
+
             Result.success(translated)
+
         } catch (e: Exception) {
+
             Result.failure(e)
+
+        } finally {
+
+            translator.close()
         }
     }
 
-    private fun isValidTranslation(text: String, translated: String): Boolean {
-//لاتحفض اذا كان النص المدخل اقل من حرفين
-        if (text.length < 2 ) return false
-//لاتحفض اذا المخرج نفس النص المدخل
-        if (text.trim().lowercase() == translated.trim().lowercase()) return false
-//        لاتحفض اذا المخرج فاضي
-        if (translated.isBlank()) return false
+    // التحقق من صلاحية الترجمة للحفظ
+    private fun isValidTranslation(
+        text: String,
+        translated: String
+    ): Boolean {
+        val original = text.trim()
+        val result = translated.trim()
+        if (original.length < 2) return false
+        if (result.isBlank()) return false
+        if (original.equals(result, ignoreCase = true)) return false
 
         return true
     }
-    //  حفظ الترجمة في Room
+
+    // حفظ الترجمة في Room
     private suspend fun saveTranslationToRoom(
         original: String,
         translated: String,
@@ -64,24 +105,32 @@ class RepositoryTranslate(context: Context) {
             fromLanguageEntity = fromLang,
             toLanguageEntity = toLang
         )
+
         dao.insertTranslation(entity)
     }
-    //  DataStore: حفظ واسترجاع آخر لغتين
+
+    // حفظ آخر لغتين في DataStore
     suspend fun saveRepo(from: String, to: String) {
         preferencesTranslate.saveLanguage(from, to)
     }
+
+    // استرجاع آخر لغتين من DataStore
     suspend fun getSaveLanguageRepo(): Pair<String?, String?> {
         return preferencesTranslate.getLanguage()
     }
-    //  جلب كل الترجمات من Room
+
+    // جلب جميع الترجمات من Room
     fun getAllTranslations(): Flow<List<EntityTranslate>> {
         return dao.getAllTranslation()
     }
-    //  مسح السجل
-    suspend fun clearHistory() {
-        dao.delete()
-    }
+
+    // حذف ترجمة حسب ID
     suspend fun deleteById(id: Int) {
         dao.deleteById(id)
+    }
+
+    // مسح سجل الترجمات بالكامل
+    suspend fun clearHistory() {
+        dao.delete()
     }
 }

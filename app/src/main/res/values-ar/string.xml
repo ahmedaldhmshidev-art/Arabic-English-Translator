@@ -1,24 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="etEnterTextOriginal">إدخل النص</string>
-    <string name="tvShowTextTranslated">الترجمة ستضهر هنا</string>
-    <string name="btnDeleteTheRecord">حذف السجل</string>
-    <string name="app_name">Translate languages</string>
-    <string name="imgSpeak">نطق الترجمة</string>
-    <string name="imgSpeakOriginal">نطق الترجمةالأصلي</string>
-    <string name="tvFromLanguage">اللأنجليزي</string>
+    <string name="app_name">المترجم</string>
+    <string name="etEnterTextOriginal">أدخل النص المراد ترجمته</string>
+    <string name="tvShowTextTranslated">ستظهر الترجمة هنا</string>
+    <string name="tvFromLanguage">الإنجليزية</string>
     <string name="tvToLanguage">العربية</string>
     <string name="imgChangeLanguage">تبديل اللغات</string>
-    <string name="messageNoFundText"> لا يوجد نص لنطقه</string>
-    <string name="messageDeletedRecord"> تم حذف السجل</string>
-    <string name="messageDoDeletedRecord"> تم حذف الترجمة من السجل</string>
-    <string name="messageTranslating">جاري الترجمة...</string>
-    <string name="messageFailure">فشل تشغيل الصوت</string>
-
-    <string name="dialog_delete_history_title">تأكيد حذف السجل</string>
+    <string name="imgSpeak">الاستماع إلى الترجمة</string>
+    <string name="imgSpeakOriginal">الاستماع إلى النص الأصلي</string>
+    <string name="messageDoDeletedRecord">تم حذف الترجمة من السجل</string>
+    <string name="messageNoFundText">لا يوجد نص لنطقه</string>
+    <string name="messageDeletedRecord">تم حذف السجل بنجاح</string>
+    <string name="messageTranslating">جارٍ الترجمة...</string>
+    <string name="messageFailure">تعذّر تشغيل الصوت</string>
+    <string name="record">السجل</string>
+    <string name="translation">الترجمة</string>
+    <string name="translator">مترجم النصوص</string>
+    <!-- سجل الترجمات -->
+    <string name="original_text">النص الأصلي</string>
+    <string name="record_language">الإنجليزية ← العربية</string>
+    <string name="record_date">18 نوفمبر 2026</string>
+    <string name="holle_world">مرحباً بالعالم</string>
+    <string name="record_translate">سجل الترجمات</string>
+    <string name="btnDeleteTheRecord">حذف السجل</string>
+    <string name="dialog_delete_history_title">تأكيد الحذف</string>
     <string name="dialog_delete_history_yes">حذف</string>
-    <string name="dialog_delete_history_no">الغاء</string>
-    <string name="dialog_delete_history_message">هل أنت متأكد أنك تريد حذف جميع السجلات؟ لا يمكن التراجع عن هذا الاجراء</string>
+    <string name="dialog_delete_history_no">إلغاء</string>
+    <string name="dialog_delete_history_message">هل أنت متأكد من حذف سجل الترجمات بالكامل؟</string>
 
+    <string name="downloading_language_models">جارٍ تنزيل نماذج اللغات، يرجى الانتظار...</string>
+    <string name="checking_language_models">جارٍ التحقق من توفر نماذج اللغات...</string>
+    <string name="download_completed">تم تنزيل نماذج اللغات بنجاح</string>
+    <string name="download_failed">فشل تنزيل نماذج اللغات</string>
 
+    <string name="download_language_models">تنزيل نماذج اللغات</string>
+    <string name="download_confirmation_message">نماذج اللغات غير متوفرة. هل تريد تنزيلها الآن؟</string>
+    <string name="download">تنزيل</string>
+    <string name="cancel">إلغاء</string>
 </resources>

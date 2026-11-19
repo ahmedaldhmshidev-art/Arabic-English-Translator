@@ -1,30 +1,40 @@
 <resources>
-    <string name="app_name">Translate languages</string>
-    <!-- TODO: Remove or change this placeholder text -->
-<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <string name="app_name">Translator</string>
 
-    <string name="etEnterTextOriginal">Enter the text</string>
-    <string name="tvShowTextTranslated">Translate will be here</string>
-    <string name="btnDeleteTheRecord">Delete the record</string>
-    <string name="imgSpeak">Translation pronunciation </string>
-    <string name="imgSpeakOriginal">Original translation pronunciation</string>
+    <string name="etEnterTextOriginal">Enter text to translate</string>
+    <string name="tvShowTextTranslated">Translation will appear here</string>
     <string name="tvFromLanguage">English</string>
     <string name="tvToLanguage">Arabic</string>
-    <string name="imgChangeLanguage"> Language switch</string>
-    <string name="messageDoDeletedRecord">Deleted translated from record</string>
+    <string name="imgChangeLanguage">Switch languages</string>
+    <string name="imgSpeak">Listen to translation</string>
+    <string name="imgSpeakOriginal">Listen to original text</string>
+    <string name="messageDoDeletedRecord">Translation removed from history</string>
     <string name="messageNoFundText">There is no text to pronounce</string>
-    <string name="messageDeletedRecord"> Deleted the record</string>
-    <string name="messageTranslating">Translating</string>
-    <string name="messageFailure">Sound play failed</string>
+    <string name="messageDeletedRecord">Record deleted successfully</string>
+    <string name="messageTranslating">Translating...</string>
+    <string name="messageFailure">Failed to play audio</string>
 
+    <string name="record">History</string>
+    <string name="translation">Translation</string>
+    <string name="translator">Translator text</string>
+    <string name="original_text">Original text</string>
+    <string name="record_language">English → Arabic</string>
+    <string name="record_date">Nov 18, 2026</string>
+    <string name="holle_world">Hello, World!</string>
+    <string name="record_translate">Translation History</string>
+    <string name="btnDeleteTheRecord">Delete record</string>
     <string name="dialog_delete_history_title">Confirm Deletion</string>
     <string name="dialog_delete_history_yes">Delete</string>
     <string name="dialog_delete_history_no">Cancel</string>
-    <string name="dialog_delete_history_message">Are you sure you want to delete all history? This action cannot be undone.</string>
+    <string name="dialog_delete_history_message">Are you sure you want to delete all translation history?</string>
+    <string name="downloading_language_models">Downloading language models, please wait...</string>
+    <string name="checking_language_models">Checking language models...</string>
+    <string name="download_completed">Language models downloaded successfully</string>
+    <string name="download_failed">Failed to download language models</string>
 
-
-
-
-
+    <string name="download_language_models">Download Language Models</string>
+    <string name="download_confirmation_message">Language models are not available. Would you like to download them now?</string>
+    <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

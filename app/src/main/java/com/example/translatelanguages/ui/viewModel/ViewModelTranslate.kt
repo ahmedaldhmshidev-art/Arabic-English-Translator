@@ -1,5 +1,6 @@
 package com.example.translatelanguages.ui.viewModel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -10,15 +11,18 @@ import com.google.mlkit.nl.translate.TranslateLanguage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ViewModelTranslate(private val repo: RepositoryTranslate) : ViewModel() {
     //  اللغات الحالية
     private var fromLang: String = TranslateLanguage.ENGLISH
     private var toLang: String = TranslateLanguage.ARABIC
+
     //  الحالة الحالية للواجهة
     private val _state = MutableStateFlow<StateTranslate>(StateTranslate.Idle)
-    val state: StateFlow<StateTranslate> = _state
+    val state: StateFlow<StateTranslate> = _state.asStateFlow()
+
     //  init: تحميل آخر لغتين محفوظتين من DataStore
     init {
         viewModelScope.launch {
@@ -34,6 +38,7 @@ class ViewModelTranslate(private val repo: RepositoryTranslate) : ViewModel() {
             )
         }
     }
+
     //  دالة ترجمة النص
     fun translate(text: String) {
         // التحقق من النص
@@ -84,16 +89,19 @@ class ViewModelTranslate(private val repo: RepositoryTranslate) : ViewModel() {
             to = toLang
         )
     }
+
     //  جلب كل الترجمات من Room
     fun getAllTranslations(): Flow<List<EntityTranslate>> {
         return repo.getAllTranslations()
     }
+
     // حذف ترجمة واحدة حسب ID
     fun deleteById(id: Int) {
         viewModelScope.launch {
             repo.deleteById(id)
         }
     }
+
     //  مسح كل السجل
     fun clearHistory() {
         viewModelScope.launch {
@@ -101,13 +109,13 @@ class ViewModelTranslate(private val repo: RepositoryTranslate) : ViewModel() {
         }
     }
 }
-
-class TranslateViewModelFactory(private val context: android.content.Context) :
-    ViewModelProvider.Factory {
-
+class TranslateViewModelFactory(
+    private val context: Context
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val repository = RepositoryTranslate(context)
         if (modelClass.isAssignableFrom(ViewModelTranslate::class.java)) {
+            val repository = RepositoryTranslate(context.applicationContext)
+            @Suppress("UNCHECKED_CAST")
             return ViewModelTranslate(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
